@@ -1,14 +1,15 @@
-all: compile link run
 
-compile: 
-	g++ -c -std=c++17 -Wall *.cpp
+CC = g++
+objs = main.o help.o
 
-link:
-	g++ -o run *.o -lm
+all: $(objs)
+	$(CC) -o run.exe $^
 
-run:
-	./run
+main.o: main.cpp
+	$(CC) -c main.cpp 
 
-clean:
-	@echo "Cleaning up..."
-	del *.o *.exe /s
+help.o: help.cpp
+	$(CC) -c help.cpp 
+
+clean: 
+	rm $(wildcard *.o) $(wildcard *.exe)
