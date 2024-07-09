@@ -1,15 +1,20 @@
+# Compiler
+CC := g++
 
-CC = g++
-objs = main.o help.o
+# Object Files
+objs := main.o help.o
 
+
+# link all obj files into an executable
 all: $(objs)
 	$(CC) -o run.exe $^
 
-main.o: main.cpp
-	$(CC) -c main.cpp 
 
-help.o: help.cpp
-	$(CC) -c help.cpp 
+# Compile all src files into obj files
+$(objs): %.o: %.cpp
+	$(CC) -c $^
 
+
+# Remove all files with .o or .exe extensions
 clean: 
-	rm $(wildcard *.o) $(wildcard *.exe)
+	rm -f $(wildcard *.o) $(wildcard *.exe)
