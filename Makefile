@@ -1,14 +1,19 @@
+.PHONY: all clean
+
+CC = g++
+CFLAGS = -std=c++17 -Wall
+
 SRC_DIR := ./src
 SRC := $(shell find $(SRC_DIR) -name *.cpp)
 
 #OBJ_DIR :=
-#OBJ :=
+OBJ := main.o help.o
 
-all: main.o
-	g++ -o run.exe main.o
+all: $(OBJ)
+	$(CC) -o run.exe $^
 
-main.o: src/main.cpp
-	g++ -c $(SRC_DIR)
+$(OBJ): %.o: %.cpp
+	$(CC) $(CFLAGS) -c $^
 
 list_src:
 	@echo $(SRC)
