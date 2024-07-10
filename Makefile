@@ -1,6 +1,9 @@
 SRC_DIR := ./src
 SRC := $(shell find $(SRC_DIR) -name *.cpp)
 
+#OBJ_DIR :=
+#OBJ :=
+
 all: main.o
 	g++ -o run.exe main.o
 
