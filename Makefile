@@ -1,14 +1,10 @@
-all: compile link run
+SRC_DIR := src/main.cpp
 
-compile: 
-	g++ -c -std=c++17 -Wall *.cpp
+all: main.o
+	g++ -o run.exe main.o
 
-link:
-	g++ -o run *.o -lm
-
-run:
-	./run
+main.o: src/main.cpp
+	g++ -c $(SRC_DIR)
 
 clean:
-	@echo "Cleaning up..."
-	del *.o *.exe /s
+	rm -f $(wildcard *.o) $(wildcard *.exe)
