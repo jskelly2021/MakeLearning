@@ -1,22 +1,14 @@
-.PHONY: all clean
+all: compile link run
 
-# Compiler
-CC := g++
+compile: 
+	g++ -c -std=c++17 -Wall *.cpp
 
-# Object Files
-objs := main.o help.o
+link:
+	g++ -o run *.o -lm
 
+run:
+	./run
 
-# link all obj files into an executable
-all: $(objs)
-	$(CC) -o run.exe $^
-
-
-# Compile all src files into obj files
-$(objs): %.o: %.cpp
-	$(CC) -c $^
-
-
-# Remove all files with .o or .exe extensions
-clean: 
-	rm -f $(wildcard *.o) $(wildcard *.exe)
+clean:
+	@echo "Cleaning up..."
+	del *.o *.exe /s

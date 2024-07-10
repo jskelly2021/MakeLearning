@@ -1,9 +1,8 @@
-#include "help.h"
-
 #include <iostream>
 
 int main()
 {
-    PrintSentence("Hello World!");
+    std::cout << "Hello, World!" << std::endl;
+
     return 0;
 }
