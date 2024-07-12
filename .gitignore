@@ -1,0 +1,8 @@
+.vscode/*
+
+# Build Directories
+bin/
+
+# Files
+*.o
+*.exe

@@ -6,11 +6,11 @@ CFLAGS = -std=c++17 -Wall
 BUILD_DIR := ./bin
 SRC_DIRS := ./src
 INC_DIRS := $(shell find $(SRC_DIRS) -type d) 
-OBJ_DIRS := ./
+OBJ_DIRS := $(BUILD_DIR)
 
-SRC_FILES := $(shell find $(SRC_DIRS) -name *.cpp)
+SRC_FILES := $(shell find $(SRC_DIRS) -name "*.cpp")
 BUILD_FILES := $(patsubst %.cpp, %.o, $(SRC_FILES))
-OBJ_FILES = $(shell find $(OBJ_DIRS) -name *.o)
+OBJ_FILES = $(shell find $(OBJ_DIRS) -name "*.o")
 
 INCFLAGS := $(addprefix -I, $(INC_DIRS))
 
@@ -18,7 +18,7 @@ all: $(BUILD_DIR) $(BUILD_FILES)
 	$(CXX) -o run.exe $(OBJ_FILES)
 
 $(BUILD_FILES): %.o: %.cpp
-	$(CXX) $(CFLAGS) $(INCFLAGS) -c $^
+	$(CXX) $(CFLAGS) $(INCFLAGS) -c -o $(BUILD_DIR)/$(notdir $@) $^
 
 $(BUILD_DIR):
 	@mkdir -p $(BUILD_DIR)
@@ -34,6 +34,6 @@ list_inc:
 
 clean:
 	@echo "Cleaning project..."
-	@rm -f $(wildcard *.o) 
+	@rm -f $(wildcard $(BUILD_DIR)/*.o) 
 	@rm -f $(wildcard *.exe)
 	@echo "Done"
