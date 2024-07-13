@@ -1,8 +1,13 @@
 .vscode/*
 
 # Build Directory
-bin/
+build/
+include/
+lib/
 
 # Files
 *.o
 *.exe
+*.a
+*.dll
+*.lib
