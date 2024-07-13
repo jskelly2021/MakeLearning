@@ -1,9 +1,9 @@
 .vscode/*
 
-# Build Directory
-build/
-include/
-lib/
+#Directories
+build/*
+include/*
+lib/*
 
 # Files
 *.o
