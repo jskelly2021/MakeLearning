@@ -21,6 +21,7 @@ LIB_DIRS := $(shell find $(LIB_PATHS) -type d)
 
 # Searches search for givin file type in list of given list of directories
 SRC_FILES := $(shell find $(SRC_PATH) -name "*.cpp")
+INC_FILES := $(shell find $(SRC_PATH) -name "*.h")
 OBJ_FILES = $(shell find $(OBJ_PATHS) -name "*.o")
 
 # Creates a list of object files for each source file in SRC_FILES
@@ -39,11 +40,11 @@ $(BUILD_PATH):
 	@mkdir -p $(BUILD_PATH)
 
 # For every object file in BUILD_PATH, make searches vpath for src file that matches
-$(BUILD_PATH)/%.o: %.cpp
-	$(CXX) -c $^ -o $@ $(CFLAGS) $(INCFLAGS) 
+$(BUILD_PATH)/%.o: %.cpp $(INC_FILES)
+	$(CXX) -c $< -o $@ $(CFLAGS) $(INCFLAGS) 
 
 # Link objects and create an executable
-$(EXE):
+$(EXE): $(OBJ_FILES)
 	$(CXX) -o $(EXE) $(OBJ_FILES) $(LIBFLAGS)
 
 list_src: ; @echo $(SRC_FILES)
