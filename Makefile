@@ -28,7 +28,13 @@ OBJ_FILES = $(shell find $(OBJ_PATHS) -name "*.o")
 BUILD_OBJS := $(patsubst %.cpp, $(BUILD_PATH)/%.o, $(notdir $(SRC_FILES)))
 
 INCFLAGS := $(addprefix -I, $(INC_DIRS))
-LIBFLAGS := $(addprefix -L, $(LIB_DIRS)) -lraylib -lgdi32 -lwinmm
+LIBFLAGS := $(addprefix -L, $(LIB_DIRS)) -framework CoreVideo -framework IOKit -framework Cocoa -framework GLUT -framework OpenGL lib/libraylib.a
+
+# Lib flags for winOS
+# -lraylib -lgdi32 -lwinmm
+
+# Lib flags for macOS
+# -framework CoreVideo -framework IOKit -framework Cocoa -framework GLUT -framework OpenGL lib/libraylib.a
 
 # Look for given file type in given list of directories when needed as a prereqs
 vpath %.cpp $(INC_DIRS)
