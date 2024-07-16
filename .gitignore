@@ -6,6 +6,7 @@ build/*
 
 # Files
 *.o
+*.a
 *.exe
 *.dll
 *.lib
